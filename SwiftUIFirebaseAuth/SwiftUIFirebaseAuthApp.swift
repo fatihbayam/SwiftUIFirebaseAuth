@@ -16,9 +16,10 @@ struct SwiftUIFirebaseAuthApp: App {
     
     var body: some Scene {
         WindowGroup {
-          NavigationView {
-            ContentView()
-          }
+            NavigationStack{
+                MainView()
+                
+            }
         }
       }
 }
