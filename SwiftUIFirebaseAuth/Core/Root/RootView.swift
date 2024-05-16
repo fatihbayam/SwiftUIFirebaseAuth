@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct RootView: View {
     
     @State private var showSignInView: Bool = false
     
