@@ -6,6 +6,12 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import GoogleSignInSwift
+
+protocol AuthenticationEmailFormProtocol {
+    var formIsValid: Bool { get }
+}
 
 struct AuthenticationView: View {
     
@@ -33,6 +39,29 @@ struct AuthenticationView: View {
                     .background(.orange)
                     .cornerRadius(10)
             })
+            
+            NavigationLink{
+                SignInEmailView(showSignInView: $showSignInView)
+            } label: {
+                Text("Sign In with Email")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(.blue)
+                    .cornerRadius(10)
+            }
+            
+            GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .light, style: .standard, state: .normal)) {
+                Task {
+                    do{
+                       try await viewModel.signInGoogle()
+                        showSignInView = false
+                    } catch {
+                        print("DEBUG: Error sign in with Google \(error.localizedDescription)")
+                    }
+                }
+            }
             
             Spacer()
         }

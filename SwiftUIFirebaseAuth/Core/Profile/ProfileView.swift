@@ -20,6 +20,11 @@ struct ProfileView: View {
                 if let isAnonymous = user.isAnonymous {
                     Text("Is Anonymous: \(isAnonymous.description.capitalized)")
                 }
+                
+                if let email = user.email {
+                    Text("Email : \(email)")
+                }
+                
             }
         }
         .task {

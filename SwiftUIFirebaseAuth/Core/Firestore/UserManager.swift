@@ -102,6 +102,26 @@ final class UserManager {
         return try await userDocument(userId: userId).getDocument(as: DBUser.self)
     }
     
+    func linkedAnonymousUserToEmail(user: DBUser) async throws {
+        let data: [String:Any?] = [
+            DBUser.CodingKeys.isAnonymous.rawValue: user.isAnonymous,
+            DBUser.CodingKeys.email.rawValue: user.email
+        ]
+        try await userDocument(userId: user.userId).updateData(data as [AnyHashable : Any])
+    }
+    
+    func linkedAnonymousUserToGoogle(user: DBUser) async throws {
+        let data: [String:Any?] = [
+            DBUser.CodingKeys.isAnonymous.rawValue: user.isAnonymous,
+            DBUser.CodingKeys.email.rawValue: user.email,
+            DBUser.CodingKeys.photoUrl.rawValue: user.photoUrl
+        ]
+
+        try await userDocument(userId: user.userId).updateData(data as [AnyHashable : Any])
+        
+        
+    }
+    
     func updateUserPremiumStatus(userId: String, isPremium: Bool) async throws {
         let data: [String:Any] = [
             DBUser.CodingKeys.isPremium.rawValue: isPremium

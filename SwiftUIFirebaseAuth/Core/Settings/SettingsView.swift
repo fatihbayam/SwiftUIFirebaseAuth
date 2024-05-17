@@ -38,8 +38,17 @@ struct SettingsView: View {
                     Text("Delete Account")
             }
             
+            if viewModel.authProviders.contains(.email){
+                emailSection
+            }
+            
+            if viewModel.authUser?.isAnonymous == true {
+                anonymousSection
+            }
+            
         }
         .onAppear{
+            viewModel.loadAuthProviders()
             viewModel.loadAuthUser()
         }
         .navigationTitle("Settings")
@@ -48,4 +57,78 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView(showSignInView: .constant(false))
+}
+
+
+extension SettingsView {
+    private var emailSection: some View{
+        Section {
+            Button("Reset Password") {
+                Task{
+                    do{
+                        try await viewModel.resetPassword()
+                        print("DEBUG: Password Reset!")
+                    } catch{
+                        print("DEBUG: Error signOut \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+            Button("Update Email") {
+                Task{
+                    do{
+                        try await viewModel.updateEmail()
+                        print("DEBUG: Update Email!")
+                    } catch{
+                        print("DEBUG: Error signOut \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+            Button("Update Password") {
+                Task{
+                    do{
+                        try await viewModel.updatePassword()
+                        print("DEBUG: Update Password!")
+                    } catch{
+                        print("DEBUG: Error signOut \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+        } header: {
+            Text("Email Functions")
+        }
+    }
+   
+    
+    private var anonymousSection: some View{
+        Section {        
+            
+            Button("Link Google Account") {
+                Task{
+                    do{
+                        try await viewModel.linkGoogleAccount()
+                        print("DEBUG: Google Linked!")
+                    } catch{
+                        print("DEBUG: Error signOut \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+            ZStack(alignment: .leading) {
+                NavigationLink(destination: SignUpEmailView(showSignInView: $showSignInView).navigationBarBackButtonHidden(true)
+                               ) {
+                    EmptyView()
+                }
+                .opacity(0.0)
+                Text("Email Link Account") //This will be the view that you want to display to the user
+                    .foregroundColor(.blue)
+            }
+            
+        } header: {
+            Text("Create Account")
+        }
+    }
+
 }
