@@ -122,6 +122,18 @@ final class UserManager {
         
     }
     
+    func linkedAnonymousUserToApple(user: DBUser) async throws {
+        let data: [String:Any?] = [
+            DBUser.CodingKeys.isAnonymous.rawValue: user.isAnonymous,
+            DBUser.CodingKeys.email.rawValue: user.email,
+            //DBUser.CodingKeys.photoUrl.rawValue: user.photoUrl
+        ]
+
+        try await userDocument(userId: user.userId).updateData(data as [AnyHashable : Any])
+        
+        
+    }
+    
     func updateUserPremiumStatus(userId: String, isPremium: Bool) async throws {
         let data: [String:Any] = [
             DBUser.CodingKeys.isPremium.rawValue: isPremium

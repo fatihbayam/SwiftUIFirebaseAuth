@@ -63,6 +63,21 @@ struct AuthenticationView: View {
                 }
             }
             
+            Button(action: {
+                Task {
+                    do{
+                       try await viewModel.signInApple()
+                        showSignInView = false
+                    } catch {
+                        print("DEBUG: Error sign in with Apple \(error.localizedDescription)")
+                    }
+                }
+            }, label: {
+                SignInWithAppleButtonViewRepresentable(type: .default, style: .black)
+                    .allowsHitTesting(false)
+            })
+            .frame(height: 55)
+            
             Spacer()
         }
         .padding()

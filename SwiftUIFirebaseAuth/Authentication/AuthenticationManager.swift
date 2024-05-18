@@ -110,7 +110,16 @@ extension AuthenticationManager {
         let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken,
                                                        accessToken: tokens.accessToken)
         return try await linkCredential(credential: credential)
-    }        
+    }  
+    
+    func linkApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel {
+        let credential = OAuthProvider.credential(withProviderID: AuthProviderOption.apple.rawValue, // apple.com
+                                                  idToken: tokens.token,
+                                                  rawNonce: tokens.nonce
+        )
+        return try await linkCredential(credential: credential)
+    }
+    
 }
 
 
@@ -162,7 +171,18 @@ extension AuthenticationManager {
                                                        accessToken: tokens.accessToken)
         return try await signIn(credential: credential)
     }
-        
+    
+    @discardableResult
+    func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel {
+        // Initialize a fresh Apple credential with Firebase.
+        let credential = OAuthProvider.credential(withProviderID: AuthProviderOption.apple.rawValue, // apple.com
+                                                  idToken: tokens.token,
+                                                  rawNonce: tokens.nonce
+        )
+
+        return try await signIn(credential: credential)
+    }
+    
     func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(with: credential)
         return AuthDataResultModel(user: authDataResult.user)

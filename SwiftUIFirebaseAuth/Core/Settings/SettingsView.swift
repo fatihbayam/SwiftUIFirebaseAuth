@@ -69,7 +69,7 @@ extension SettingsView {
                         try await viewModel.resetPassword()
                         print("DEBUG: Password Reset!")
                     } catch{
-                        print("DEBUG: Error signOut \(error.localizedDescription)")
+                        print("DEBUG: Error Reset Password.  \(error.localizedDescription)")
                     }
                 }
             }
@@ -80,7 +80,7 @@ extension SettingsView {
                         try await viewModel.updateEmail()
                         print("DEBUG: Update Email!")
                     } catch{
-                        print("DEBUG: Error signOut \(error.localizedDescription)")
+                        print("DEBUG: Error Update Email. \(error.localizedDescription)")
                     }
                 }
             }
@@ -91,7 +91,7 @@ extension SettingsView {
                         try await viewModel.updatePassword()
                         print("DEBUG: Update Password!")
                     } catch{
-                        print("DEBUG: Error signOut \(error.localizedDescription)")
+                        print("DEBUG: Error Update Password. \(error.localizedDescription)")
                     }
                 }
             }
@@ -111,7 +111,18 @@ extension SettingsView {
                         try await viewModel.linkGoogleAccount()
                         print("DEBUG: Google Linked!")
                     } catch{
-                        print("DEBUG: Error signOut \(error.localizedDescription)")
+                        print("DEBUG: Error Google Linked. \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+            Button("Link Apple Account") {
+                Task{
+                    do{
+                        try await viewModel.linkAppleAccount()
+                        print("DEBUG: Apple Linked!")
+                    } catch{
+                        print("DEBUG: Error Apple Linked. \(error.localizedDescription)")
                     }
                 }
             }

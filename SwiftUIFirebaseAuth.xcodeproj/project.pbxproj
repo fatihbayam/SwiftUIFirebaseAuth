@@ -34,6 +34,7 @@
 		7EFF596A2BF6A13D0028E4F1 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7EFF59692BF6A13D0028E4F1 /* GoogleSignInSwift */; };
 		7EFF596D2BF6A9D40028E4F1 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFF596C2BF6A9D40028E4F1 /* Utilities.swift */; };
 		7EFF59702BF6AC010028E4F1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EFF596F2BF6AC010028E4F1 /* GoogleService-Info.plist */; };
+		7EFF59732BF7F0090028E4F1 /* SignInAppleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFF59722BF7F0090028E4F1 /* SignInAppleHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,8 @@
 		7EFF596C2BF6A9D40028E4F1 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		7EFF596E2BF6AB940028E4F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7EFF596F2BF6AC010028E4F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7EFF59712BF7EE570028E4F1 /* SwiftUIFirebaseAuth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftUIFirebaseAuth.entitlements; sourceTree = "<group>"; };
+		7EFF59722BF7F0090028E4F1 /* SignInAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAppleHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,7 @@
 		7E8222B02BF03BC7007B9491 /* SwiftUIFirebaseAuth */ = {
 			isa = PBXGroup;
 			children = (
+				7EFF59712BF7EE570028E4F1 /* SwiftUIFirebaseAuth.entitlements */,
 				7EFF596E2BF6AB940028E4F1 /* Info.plist */,
 				7E8222DC2BF12E1B007B9491 /* Authentication */,
 				7E8222D42BF12D80007B9491 /* Core */,
@@ -149,6 +153,7 @@
 			children = (
 				7E8222DD2BF12EB7007B9491 /* AuthenticationManager.swift */,
 				7EFF59642BF6A0D30028E4F1 /* SignInGoogleHelper.swift */,
+				7EFF59722BF7F0090028E4F1 /* SignInAppleHelper.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 				7E8222F12BF1876B007B9491 /* SignInEmailView.swift in Sources */,
 				7E8222F32BF1877E007B9491 /* SignInEmailViewModel.swift in Sources */,
 				7E8222E92BF153E0007B9491 /* SettingsView.swift in Sources */,
+				7EFF59732BF7F0090028E4F1 /* SignInAppleHelper.swift in Sources */,
 				7EFF59652BF6A0D30028E4F1 /* SignInGoogleHelper.swift in Sources */,
 				7E8222D92BF12DFD007B9491 /* AuthenticationView.swift in Sources */,
 				7EFF596D2BF6A9D40028E4F1 /* Utilities.swift in Sources */,
@@ -434,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SwiftUIFirebaseAuth/SwiftUIFirebaseAuth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUIFirebaseAuth/Preview Content\"";
@@ -464,6 +471,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SwiftUIFirebaseAuth/SwiftUIFirebaseAuth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUIFirebaseAuth/Preview Content\"";

@@ -65,5 +65,15 @@ final class SettingsViewModel: ObservableObject {
 
     }
     
+    func linkAppleAccount() async throws {
+        let helper = SignInAppleHelper()
+        let tokens = try await helper.startSignInWithAppleFlow()
+        self.authUser = try await AuthenticationManager.shared.linkApple(tokens: tokens)
+        if let authDataResult = self.authUser {
+            let user = DBUser(auth: authDataResult)
+            try await UserManager.shared.linkedAnonymousUserToApple(user: user)
+        }
+    }
+    
 }
 

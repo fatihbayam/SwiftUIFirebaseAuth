@@ -25,6 +25,8 @@ struct ProfileView: View {
                     Text("Email : \(email)")
                 }
                 
+               
+                
             }
         }
         .task {
